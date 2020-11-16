@@ -2,7 +2,6 @@ import React from 'react';
 import './FavsList.css';
 
 function FavsList(props) {
-	console.log('favs', props)
 	const loaded = props.favs.map((fav, index) => {
 		return (
 			<div className='fav' key={index}>
@@ -14,7 +13,7 @@ function FavsList(props) {
 						<b>Artist:</b> {fav.artist}
 					</span>
 					<span className='fav-time'>
-						<b>Time:</b> {fav.time}
+						<b>Time:</b> {fav.length_mins_seconds}
 					</span>
 				</div>
 			</div>
@@ -24,9 +23,10 @@ function FavsList(props) {
 
 	return (
 		<>
-			<h3>My Fave List</h3>
+			<h3>My Favorite Jams</h3>
 			{props.favs.length > 0 ? loaded : loading}
-		</>)
+		</>
+	);
 }
 
 export default FavsList;

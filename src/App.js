@@ -6,7 +6,7 @@ import FavsList from './Components/FavsList/FavsList';
 import Form from './Components/Form/Form';
 
 function App() {
-	const url = 'https://tunr-backend.herokuapp.com/api';
+	const url = 'http://localhost:3000';
 
 	const [list, setList] = React.useState([]);
 	const [favs, setFavs] = React.useState([]);
@@ -21,13 +21,12 @@ function App() {
 	const selectSong = (song) => {
 		setSelectedSong(song);
 	};
-	console.log('selectSong', selectSong)
 
 	const getSongs = () => {
-		fetch(url + '/songs/')
+		fetch(url + '/songs')
 			.then((response) => response.json())
 			.then((data) => {
-				console.log('data', data)
+				console.log('data', data);
 				setList(data);
 			});
 	};
@@ -35,9 +34,8 @@ function App() {
 		getSongs();
 	}, []);
 
-
 	const handleCreate = (newSong) => {
-		fetch(url + '/songs/', {
+		fetch(url + '/songs', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(newSong),
@@ -45,23 +43,34 @@ function App() {
 	};
 
 	const handleUpdate = (song) => {
-		fetch(url + '/songs/' + song._id, {
+		console.log(song);
+		fetch(url + '/songs/' + song.id, {
 			method: 'put',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(song),
-		}).then((response) => getSongs());
+		}).then((response) => {
+			console.log(response.json());
+			getSongs();
+		});
 	};
 
 	const handleDelete = (song) => {
-		console.log('song', song)
-		fetch(url + '/songs/' + song._id, {
+		fetch(url + '/songs/' + song.id, {
 			method: 'delete',
 		}).then((response) => getSongs());
 	};
 
 	const handleSave = (song) => {
 		const newFavs = [...favs];
-		newFavs.push(song);
+
+		// add song if not in favs
+		if (newFavs.indexOf(song) === -1) {
+			newFavs.push(song);
+			// remove song if already in favs
+		} else {
+			newFavs.splice(newFavs.indexOf(song), 1);
+			console.log(newFavs);
+		}
 		setFavs(newFavs);
 	};
 
@@ -74,6 +83,7 @@ function App() {
 			<main>
 				<Switch>
 					<Route
+						exact
 						path='/'
 						render={(rp) => (
 							<>
@@ -85,22 +95,49 @@ function App() {
 									handleSave={handleSave}
 								/>
 								<FavsList {...rp} favs={favs} />
-								<Form {...rp} song={selectedSong} handleSubmit={handleCreate} />
 							</>
 						)}
 					/>
 
 					<Route
-						exact
+						path='/create'
+						render={(rp) => (
+							<>
+								<Form {...rp} song={selectedSong} handleSubmit={handleCreate} />
+								<Playlist
+									{...rp}
+									list={list}
+									song={selectedSong}
+									selectSong={selectSong}
+									handleDelete={handleDelete}
+									handleSave={handleSave}
+								/>
+								<FavsList {...rp} favs={favs} />
+							</>
+						)}
+					/>
+
+					<Route
 						path='/edit'
 						render={(rp) => (
-							<Form
-								{...rp}
-								selectSong={selectSong}
-								song={selectedSong}
-								handleSubmit={handleCreate}
-								handleUpdate={handleUpdate}
-							/>
+							<>
+								<Form
+									{...rp}
+									selectSong={selectSong}
+									song={selectedSong}
+									handleSubmit={handleUpdate}
+									handleUpdate={handleUpdate}
+								/>
+								<Playlist
+									{...rp}
+									list={list}
+									song={selectedSong}
+									selectSong={selectSong}
+									handleDelete={handleDelete}
+									handleSave={handleSave}
+								/>
+								<FavsList {...rp} favs={favs} />
+							</>
 						)}
 					/>
 				</Switch>
