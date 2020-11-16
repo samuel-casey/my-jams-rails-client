@@ -4,7 +4,7 @@ import { Button } from 'react-bulma-components';
 import './FavsList.scss';
 
 function FavsList(props) {
-	// add full hearts for favs
+	console.log('favs', props.favs);
 
 	const loaded = props.favs.map((fav, index) => {
 		return (

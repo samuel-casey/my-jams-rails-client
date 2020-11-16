@@ -57,10 +57,12 @@ h3 {
   color: $c-one;
 }
 
+button {
+  box-shadow: 0px 0px 2px 0px $c-one !important;
+}
+
 @media screen and (max-width: 495px) {
   .song, .fav {
     flex-direction: column;
   }
-
-
 }

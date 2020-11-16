@@ -20,6 +20,7 @@ function App() {
 
 	const [selectedSong, setSelectedSong] = React.useState(emptySong);
 	const selectSong = (song) => {
+		console.log(song);
 		setSelectedSong(song);
 	};
 
@@ -27,13 +28,12 @@ function App() {
 		fetch(url + '/songs')
 			.then((response) => response.json())
 			.then((data) => {
-				console.log('data', data);
 				setList(data);
 			});
 	};
 	React.useEffect(() => {
 		getSongs();
-	}, []);
+	}, [selectedSong, favs]);
 
 	const handleCreate = (newSong) => {
 		fetch(url + '/songs', {
@@ -44,13 +44,11 @@ function App() {
 	};
 
 	const handleUpdate = (song) => {
-		console.log(song);
 		fetch(url + '/songs/' + song.id, {
 			method: 'put',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(song),
 		}).then((response) => {
-			console.log(response.json());
 			getSongs();
 		});
 	};
@@ -72,19 +70,21 @@ function App() {
 			newFavs.splice(newFavs.indexOf(song), 1);
 			console.log(newFavs);
 		}
-		setFavs(newFavs);
 		getSongs();
+		setFavs(newFavs);
 	};
 
 	return (
 		<div className='App'>
-			<header>
-				<div className='brand'>
-					<img src={require('./music_folder.png')} alt='logo' />
-					<h1>My Jams</h1>
-				</div>
-				<h2>FOR YOUR FAVORITE JAMS</h2>
-			</header>
+			<Link to='/'>
+				<header>
+					<div className='brand'>
+						<img src={require('./music_folder.png')} alt='logo' />
+						<h1>My Jams</h1>
+					</div>
+					<h2>FOR YOUR FAVORITE JAMS</h2>
+				</header>
+			</Link>
 			<main>
 				<Switch>
 					<Route
