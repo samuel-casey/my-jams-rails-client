@@ -1,0 +1,22 @@
+.song-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-form h3 {
+    align-self: flex-start;
+    padding-left: 25%;
+    color: #4476CD;
+}
+
+form {
+    display: grid;
+    grid-gap: 0.5rem;
+    width: 50%;
+    align-self: center;
+}
+
+form input[type="submit"] {
+    width: fit-content;
+    justify-self: center;
+}

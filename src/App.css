@@ -1,0 +1,13 @@
+header {
+  background-color: grey;
+}
+h1 {
+  text-align: left;
+  font-size: 40px;
+  padding: 10px;
+}
+h2 {
+  text-align: right;
+  font-size: 25px;
+  padding: 10px;
+}

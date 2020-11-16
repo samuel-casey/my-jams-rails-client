@@ -1,0 +1,30 @@
+span {
+    padding: 0.5rem;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+    width: 90vw;
+}
+
+.song-info {
+    justify-self: flex-start;
+    width: fit-content;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btns {
+    justify-self: flex-end;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    width: fit-content;
+    background-color: aliceblue;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
