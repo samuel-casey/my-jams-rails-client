@@ -53,7 +53,9 @@ function FavsList(props) {
 
 	return (
 		<>
-			<h3>My Favorite Jams</h3>
+			<div className='favs-heading'>
+				<h3>My Favorite Jams</h3>
+			</div>
 			{props.favs.length > 0 ? loaded : loading}
 		</>
 	);

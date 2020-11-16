@@ -28,7 +28,7 @@ function Playlist(props) {
 						onClick={() => {
 							props.handleSave(song);
 						}}>
-						<i class='far fa-heart'></i>
+						<i className='far fa-heart'></i>
 					</Button>
 					<Link to='/edit'>
 						<Button
@@ -62,7 +62,6 @@ function Playlist(props) {
 					Add a jam
 				</Button>
 			</div>
-
 			{props.list.length > 0 ? loaded : loading}
 		</>
 	);

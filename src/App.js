@@ -79,7 +79,10 @@ function App() {
 	return (
 		<div className='App'>
 			<header>
-				<h1>My Jams</h1>
+				<div className='brand'>
+					<img src={require('./music_folder.png')} alt='logo' />
+					<h1>My Jams</h1>
+				</div>
 				<h2>FOR YOUR FAVORITE JAMS</h2>
 			</header>
 			<main>

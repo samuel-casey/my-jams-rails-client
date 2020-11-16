@@ -3,18 +3,19 @@
 .song-form {
     display: flex;
     flex-direction: column;
-     background-color: $c-three;
+    background-color: $c-three;
     padding: 0.5rem;
 }
 
 .song-form {
     text-align: center;
+    width: 100%;
 }
 
 form {
     display: grid;
     grid-gap: 0.5rem;
-    width: 50%;
+    width: 80%;
     align-self: center;
 }
 
