@@ -1,0 +1,15 @@
+@import "../node_modules/bulma/sass/utilities/initial-variables.sass";
+@import "../node_modules/bulma/sass/utilities/functions.sass";
+
+$c-one: #1a535c;
+$c-two: #4ECDC4;
+$c-three: #F7FFF7;
+$c-four: #FFE66D;
+$c-five: #FF6B6B;
+
+// bulma variables
+$primary: $c-two;
+$warning: $c-four;
+
+@import '../node_modules/bulma/sass/utilities/derived-variables.sass';
+@import '../node_modules/bulma/bulma.sass'

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Playlist.css';
+import { Button } from 'react-bulma-components';
+import './Playlist.scss';
 
 function Playlist(props) {
 	const handleAddBtnClick = () => {
@@ -22,30 +23,30 @@ function Playlist(props) {
 					</span>
 				</div>
 				<div className='btns'>
-					<button
-						className='btn save-song'
+					<Button
+						className='btn is-primary is-light save-song'
 						onClick={() => {
 							props.handleSave(song);
 						}}>
-						{'❤️'}
-					</button>
+						<i class='far fa-heart'></i>
+					</Button>
 					<Link to='/edit'>
-						<button
-							className='btn edit-song'
+						<Button
+							className='btn is-primary is-light edit-song'
 							onClick={() => {
 								props.selectSong(song);
 								props.history.push('/edit');
 							}}>
 							Edit
-						</button>
+						</Button>
 					</Link>
-					<button
-						className='btn remove-song'
+					<Button
+						className='button is-primary is-light remove-song'
 						onClick={() => {
 							props.handleDelete(song);
 						}}>
 						Delete
-					</button>
+					</Button>
 				</div>
 			</div>
 		);
@@ -55,8 +56,13 @@ function Playlist(props) {
 
 	return (
 		<>
-			<h3>My Jams</h3>
-			<button onClick={handleAddBtnClick}>Add a jam</button>
+			<div className='jams-heading'>
+				<h3>My Jams</h3>
+				<Button className='is-warning is-light' onClick={handleAddBtnClick}>
+					Add a jam
+				</Button>
+			</div>
+
 			{props.list.length > 0 ? loaded : loading}
 		</>
 	);

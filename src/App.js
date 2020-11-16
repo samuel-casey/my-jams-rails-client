@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
+import './App.scss';
 import { Route, Link, Switch } from 'react-router-dom';
 import Playlist from './Components/Playlist/Playlist';
 import FavsList from './Components/FavsList/FavsList';
@@ -72,10 +73,11 @@ function App() {
 			console.log(newFavs);
 		}
 		setFavs(newFavs);
+		getSongs();
 	};
 
 	return (
-		<>
+		<div className='App'>
 			<header>
 				<h1>My Jams</h1>
 				<h2>FOR YOUR FAVORITE JAMS</h2>
@@ -94,7 +96,13 @@ function App() {
 									handleDelete={handleDelete}
 									handleSave={handleSave}
 								/>
-								<FavsList {...rp} favs={favs} />
+								<FavsList
+									{...rp}
+									favs={favs}
+									handleSave={handleSave}
+									handleDelete={handleDelete}
+									selectSong={selectSong}
+								/>
 							</>
 						)}
 					/>
@@ -112,7 +120,13 @@ function App() {
 									handleDelete={handleDelete}
 									handleSave={handleSave}
 								/>
-								<FavsList {...rp} favs={favs} />
+								<FavsList
+									{...rp}
+									favs={favs}
+									handleSave={handleSave}
+									handleDelete={handleDelete}
+									selectSong={selectSong}
+								/>
 							</>
 						)}
 					/>
@@ -136,13 +150,19 @@ function App() {
 									handleDelete={handleDelete}
 									handleSave={handleSave}
 								/>
-								<FavsList {...rp} favs={favs} />
+								<FavsList
+									{...rp}
+									favs={favs}
+									handleSave={handleSave}
+									handleDelete={handleDelete}
+									selectSong={selectSong}
+								/>
 							</>
 						)}
 					/>
 				</Switch>
 			</main>
-		</>
+		</div>
 	);
 }
 

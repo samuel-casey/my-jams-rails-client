@@ -1,12 +1,14 @@
+@import '../../variables.scss';
+
 .song-form {
     display: flex;
     flex-direction: column;
+     background-color: $c-three;
+    padding: 0.5rem;
 }
 
-.song-form h3 {
-    align-self: flex-start;
-    padding-left: 25%;
-    color: #4476CD;
+.song-form {
+    text-align: center;
 }
 
 form {

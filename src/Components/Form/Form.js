@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Form.css';
+import './Form.scss';
 
 function Form(props) {
 	const [formData, setFormData] = useState(props.song);
@@ -35,6 +35,7 @@ function Form(props) {
 			<h3>{formHeading}</h3>
 			<form onSubmit={handleSubmit}>
 				<input
+					className='input is-warning'
 					type='text'
 					name='title'
 					value={formData.title}
@@ -42,6 +43,7 @@ function Form(props) {
 					onChange={handleChange}
 				/>
 				<input
+					className='input is-warning'
 					type='text'
 					name='artist'
 					value={formData.artist}
@@ -49,13 +51,18 @@ function Form(props) {
 					onChange={handleChange}
 				/>
 				<input
+					className='input is-warning'
 					type='text'
 					name='length_mins_seconds'
 					value={formData.length_mins_seconds}
 					placeholder='Time'
 					onChange={handleChange}
 				/>
-				<input type='submit' value={formBtnText} />
+				<input
+					type='submit'
+					className='button is-primary'
+					value={formBtnText}
+				/>
 			</form>
 		</div>
 	);
