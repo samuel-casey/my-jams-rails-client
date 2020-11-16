@@ -7,7 +7,7 @@ import FavsList from './Components/FavsList/FavsList';
 import Form from './Components/Form/Form';
 
 function App() {
-	const url = 'http://localhost:3000';
+	const url = 'http://my-jams-rails-api.herokuapp.com';
 
 	const [list, setList] = React.useState([]);
 	const [favs, setFavs] = React.useState([]);
