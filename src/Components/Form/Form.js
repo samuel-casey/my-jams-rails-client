@@ -20,11 +20,14 @@ function Form(props) {
 	};
 
 	let formHeading;
+	let formBtnText;
 
 	if (route === '/edit') {
 		formHeading = 'Edit a song';
+		formBtnText = 'Save edits';
 	} else if (route === '/create') {
 		formHeading = 'Add a new song';
+		formBtnText = 'Create song';
 	}
 
 	return (
@@ -52,7 +55,7 @@ function Form(props) {
 					placeholder='Time'
 					onChange={handleChange}
 				/>
-				<input type='submit' value='Add song' />
+				<input type='submit' value={formBtnText} />
 			</form>
 		</div>
 	);

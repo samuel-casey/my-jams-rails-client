@@ -77,8 +77,8 @@ function App() {
 	return (
 		<>
 			<header>
-				<h1>TUNR</h1>
-				<h2>FOR ALL YOUR PLAYLIST NEEDS</h2>
+				<h1>My Jams</h1>
+				<h2>FOR YOUR FAVORITE JAMS</h2>
 			</header>
 			<main>
 				<Switch>
