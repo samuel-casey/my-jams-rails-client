@@ -50,9 +50,11 @@ function App() {
 				console.log(fav.id, song.id);
 				return fav.id === song.id;
 			});
-			console.log('newFav[0]', newFav[0]);
+
 			let newFavs;
+			// if the updated song was in faves
 			if (newFav[0]) {
+				// replace newFav with data passed from form
 				newFavs = favs.splice(favs.indexOf(newFav[0]), 1, song);
 			}
 			console.log(newFavs, 'New Favs', favs);
@@ -64,13 +66,29 @@ function App() {
 	const handleDelete = (song) => {
 		fetch(url + '/songs/' + song.id, {
 			method: 'delete',
-		}).then((response) => getSongs());
+		}).then((response) => {
+			const newDeleted = favs.filter((deleted) => {
+				console.log(deleted.id, song.id);
+				return deleted.id === song.id;
+			});
+
+			let newFavs;
+			// if a song was deleted and the deleted song is in favs
+			if (newDeleted[0] && favs.indexOf(newDeleted[0] !== -1)) {
+				// remove the deleted song from faves
+				newFavs = favs.splice(favs.indexOf(newDeleted[0]), 1);
+			}
+			getSongs();
+			setFavs([...favs]);
+		});
 	};
 
 	const handleSave = (song) => {
 		const newFavs = [...favs];
 
 		// add song if not in favs
+
+		// THIS IS NOT WORKING CORRECTLY FOR SONGS IN PLAYLIST
 		if (!newFavs.includes(song)) {
 			// console.log(newFavs.indexOf(song));
 			newFavs.push(song);
