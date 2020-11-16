@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bulma-components';
 import './FavsList.scss';
 
 function FavsList(props) {
-	console.log('favs', props.favs);
+	const [favs, setFavs] = useState(props.favs);
 
-	const loaded = props.favs.map((fav, index) => {
+	// console.log('favs, list', favs, props.list);
+
+	useEffect(() => {
+		setFavs(props.favs);
+	}, [props.favs]);
+
+	const loaded = favs.map((fav, index) => {
 		return (
 			<div className='fav' key={index}>
 				<div className='fav-info'>
@@ -56,7 +62,7 @@ function FavsList(props) {
 			<div className='favs-heading'>
 				<h3>My Favorite Jams</h3>
 			</div>
-			{props.favs.length > 0 ? loaded : loading}
+			{favs.length > 0 ? loaded : loading}
 		</>
 	);
 }

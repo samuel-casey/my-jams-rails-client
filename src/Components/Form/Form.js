@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Form.scss';
 
 function Form(props) {
@@ -14,7 +14,6 @@ function Form(props) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Prevent Form from Refreshing
-		console.log('formdata: ', formData);
 		props.handleSubmit(formData); // Submit to Parents desired function
 		props.history.push('/'); //Push back to display page
 	};
@@ -29,6 +28,10 @@ function Form(props) {
 		formHeading = 'Add a new song';
 		formBtnText = 'Create song';
 	}
+
+	useEffect(() => {
+		setFormData(props.song);
+	}, [props.song.id]);
 
 	return (
 		<div className='song-form'>

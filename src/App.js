@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 import './App.scss';
 import { Route, Link, Switch } from 'react-router-dom';
@@ -11,16 +11,16 @@ function App() {
 
 	const [list, setList] = React.useState([]);
 	const [favs, setFavs] = React.useState([]);
+	const [updateCount, setUpdateCount] = useState(0);
 
 	const emptySong = {
 		artist: '',
 		title: '',
-		length: 0,
+		length_mins_seconds: '',
 	};
 
 	const [selectedSong, setSelectedSong] = React.useState(emptySong);
 	const selectSong = (song) => {
-		console.log(song);
 		setSelectedSong(song);
 	};
 
@@ -31,9 +31,6 @@ function App() {
 				setList(data);
 			});
 	};
-	React.useEffect(() => {
-		getSongs();
-	}, [selectedSong, favs]);
 
 	const handleCreate = (newSong) => {
 		fetch(url + '/songs', {
@@ -49,7 +46,18 @@ function App() {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(song),
 		}).then((response) => {
+			const newFav = favs.filter((fav) => {
+				console.log(fav.id, song.id);
+				return fav.id === song.id;
+			});
+			console.log('newFav[0]', newFav[0]);
+			let newFavs;
+			if (newFav[0]) {
+				newFavs = favs.splice(favs.indexOf(newFav[0]), 1, song);
+			}
+			console.log(newFavs, 'New Favs', favs);
 			getSongs();
+			setFavs([...favs]);
 		});
 	};
 
@@ -63,16 +71,27 @@ function App() {
 		const newFavs = [...favs];
 
 		// add song if not in favs
-		if (newFavs.indexOf(song) === -1) {
+		if (!newFavs.includes(song)) {
+			// console.log(newFavs.indexOf(song));
 			newFavs.push(song);
+			console.log('newFavs', newFavs);
 			// remove song if already in favs
 		} else {
 			newFavs.splice(newFavs.indexOf(song), 1);
-			console.log(newFavs);
+			// console.log(newFavs);
 		}
-		getSongs();
 		setFavs(newFavs);
 	};
+
+	useEffect(() => {
+		getSongs();
+	}, [selectedSong, favs]);
+
+	useEffect(() => {
+		// map over favsList to create a new array
+		// find song in favs, find song in list
+		// update favs to have selectedSong
+	}, [updateCount]);
 
 	return (
 		<div className='App'>
@@ -114,11 +133,10 @@ function App() {
 						path='/create'
 						render={(rp) => (
 							<>
-								<Form {...rp} song={selectedSong} handleSubmit={handleCreate} />
+								<Form {...rp} song={emptySong} handleSubmit={handleCreate} />
 								<Playlist
 									{...rp}
 									list={list}
-									song={selectedSong}
 									selectSong={selectSong}
 									handleDelete={handleDelete}
 									handleSave={handleSave}
@@ -143,12 +161,10 @@ function App() {
 									selectSong={selectSong}
 									song={selectedSong}
 									handleSubmit={handleUpdate}
-									handleUpdate={handleUpdate}
 								/>
 								<Playlist
 									{...rp}
 									list={list}
-									song={selectedSong}
 									selectSong={selectSong}
 									handleDelete={handleDelete}
 									handleSave={handleSave}
@@ -156,9 +172,9 @@ function App() {
 								<FavsList
 									{...rp}
 									favs={favs}
+									selectSong={selectSong}
 									handleSave={handleSave}
 									handleDelete={handleDelete}
-									selectSong={selectSong}
 								/>
 							</>
 						)}
