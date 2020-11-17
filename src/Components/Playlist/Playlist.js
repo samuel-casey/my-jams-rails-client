@@ -52,7 +52,12 @@ function Playlist(props) {
 		);
 	});
 
-	const loading = 'Loading...';
+	const loading = (
+		<>
+			<h4>Loading</h4>
+			<progress className='progress is-small is-warning' max='100'></progress>
+		</>
+	);
 
 	return (
 		<>
@@ -62,7 +67,7 @@ function Playlist(props) {
 					Add a jam
 				</Button>
 			</div>
-			{props.list.length > 0 ? loaded : loading}
+			{props.list.length > 11 ? loaded : loading}
 		</>
 	);
 }
