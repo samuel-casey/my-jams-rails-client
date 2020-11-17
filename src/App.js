@@ -119,7 +119,6 @@ function App() {
 						<img src={require('./music_folder.png')} alt='logo' />
 						<h1>My Jams</h1>
 					</div>
-					<h2>FOR YOUR FAVORITE JAMS</h2>
 				</header>
 			</Link>
 			<main>
