@@ -4,13 +4,21 @@ span {
     padding: 0.5rem;
 }
 
+div .song:last-of-type {
+    color: red;
+}
+
 .song {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 90%;
     margin: 0.25rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    box-shadow: 1px 1px 2px 2px #fafafa;
+
 }
+
 
 .song-info {
     justify-self: flex-start;

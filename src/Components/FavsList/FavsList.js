@@ -41,7 +41,7 @@ function FavsList(props) {
 								props.selectSong(fav);
 								props.history.push('/edit');
 							}}>
-							Edit
+							<i className='far fa-edit'></i>
 						</Button>
 					</Link>
 					<Button
@@ -49,7 +49,7 @@ function FavsList(props) {
 						onClick={() => {
 							props.handleDelete(fav);
 						}}>
-						Delete
+						<i className='far fa-trash-alt'></i>
 					</Button>
 				</div>
 			</div>

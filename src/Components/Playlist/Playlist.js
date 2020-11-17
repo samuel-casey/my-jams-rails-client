@@ -37,7 +37,7 @@ function Playlist(props) {
 								props.selectSong(song);
 								props.history.push('/edit');
 							}}>
-							Edit
+							<i className='far fa-edit'></i>
 						</Button>
 					</Link>
 					<Button
@@ -45,7 +45,7 @@ function Playlist(props) {
 						onClick={() => {
 							props.handleDelete(song);
 						}}>
-						Delete
+						<i className='far fa-trash-alt'></i>
 					</Button>
 				</div>
 			</div>
@@ -64,7 +64,7 @@ function Playlist(props) {
 			<div className='jams-heading'>
 				<h3>My Jams</h3>
 				<Button className='is-warning is-light' onClick={handleAddBtnClick}>
-					Add a jam
+					Add a song
 				</Button>
 			</div>
 			{props.list.length > 0 ? loaded : loading}

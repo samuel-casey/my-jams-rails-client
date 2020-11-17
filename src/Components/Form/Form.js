@@ -22,8 +22,8 @@ function Form(props) {
 	let formBtnText;
 
 	if (route === '/edit') {
-		formHeading = 'Edit a song';
-		formBtnText = 'Save edits';
+		formHeading = `Edit ${props.song.title}`;
+		formBtnText = 'Save changes';
 	} else if (route === '/create') {
 		formHeading = 'Add a new song';
 		formBtnText = 'Create song';
