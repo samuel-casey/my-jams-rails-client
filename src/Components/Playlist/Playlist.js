@@ -67,7 +67,7 @@ function Playlist(props) {
 					Add a jam
 				</Button>
 			</div>
-			{props.list.length > 11 ? loaded : loading}
+			{props.list.length > 0 ? loaded : loading}
 		</>
 	);
 }

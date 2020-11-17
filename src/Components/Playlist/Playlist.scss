@@ -42,9 +42,11 @@ i.far.fa-heart {
     flex-direction: column;
     width: 100%;
 
-    background-color: $c-three;
     padding: 1rem;
     margin: 0.5rem;
+    background-color: $c-three;
+    border-radius: 5px;
+    border-bottom: 5px solid $c-two;
 
 
     h3 {
