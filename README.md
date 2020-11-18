@@ -5,7 +5,7 @@
 
 Project by Sam Casey. 1-day build as part of General Assembly Bootcamp using Ruby on Rails, React, and Bulma (for styling). Very simple app that allows user to carry out all 4 CRUD operations on a playlist of songs. Also lets user save songs to a favorites list that lives in the React state.
 
-Backend [repo](https://github.com/samuel-casey/my-jams-rails-api)
+[Link Ruby on Rails backend repository](https://github.com/samuel-casey/my-jams-rails-api)
 
 ---
 
